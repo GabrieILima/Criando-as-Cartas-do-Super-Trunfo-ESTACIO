@@ -55,4 +55,5 @@ int main(){
     printf("PIB: %.2f bilhões\n", carta1.PIB);
 
     return 0;
+    
 }
