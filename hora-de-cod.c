@@ -11,13 +11,13 @@ typedef struct
     float area, PIB;
 } Carta;
 
-int densPolu(float a,int p){
+float densPolu(float p,float a){
    float densidade = p/a;
    return densidade;
 }
 
-int pibPerCapita(float produto,int pessoa){
-    float perCapita = pessoa/produto;
+float pibPerCapita(float produto,int pessoa){
+    float perCapita = (produto*1000000)/pessoa;
     return perCapita;
  }
 
@@ -53,25 +53,16 @@ int main(){
     printf("Informe o PIB da cidade: \n");
     scanf("%f", &carta1.PIB);
 
-    
 
-    // Exibindo os dados cadastrados
-    printf("\n🔹 Cidade Cadastrada 🔹\n");
-    printf("Estado: %c\n", carta1.estado);
-    printf("Código: %s\n", carta1.codigoCarta);
-    printf("Cidade: %s\n", carta1.cidade);
-    printf("Área: %.2f km²\n", carta1.area);
-    printf("População: %d habitantes\n", carta1.populacao);
-    printf("Pontos Turísticos: %d\n", carta1.pontosTuristicos);
-    printf("PIB: %.2f bilhões\n", carta1.PIB);
-    
+    printf("\nAgora entraremos com os dados da segunda carta\n");
+    printf("\n");
 
     Carta carta2; // Define uma variável do tipo de estrutura Carta, criada acima
 
 
     //Abaixo segue as solicitações para entrada dos dados das cartas
     printf("Digite a qual estado a cidade pertence: \n");
-    scanf("%c", &carta2.estado);
+    scanf(" %c", &carta2.estado);
 
     getchar();//remove o \n deixado pelo scanf pois pode causar erros de conflito com o fgets
 
@@ -97,6 +88,34 @@ int main(){
     printf("Informe o PIB da cidade: \n");
     scanf("%f", &carta2.PIB);
 
-    return 0;
+   
     
+    
+    // Exibindo os dados cadastrados
+    printf("\n🔹 Cidade Cadastrada 🔹\n");
+    printf("Estado: %c\n", carta1.estado);
+    printf("Código: %s\n", carta1.codigoCarta);
+    printf("Cidade: %s\n", carta1.cidade);
+    printf("Área: %.2f km²\n", carta1.area);
+    printf("População: %d habitantes\n", carta1.populacao);
+    printf("Pontos Turísticos: %d\n", carta1.pontosTuristicos);
+    printf("PIB: %.2f milhões\n", carta1.PIB);
+    printf("Densidade Populacional: %.2f\n", densPolu(carta1.populacao, carta1.area));
+    printf("PIB Per Capita: %.2f\n", pibPerCapita(carta1.PIB, carta1.populacao));
+
+
+    printf("\n🔹 Cidade Cadastrada 🔹\n");
+    printf("Estado: %c\n", carta2.estado);
+    printf("Código: %s\n", carta2.codigoCarta);
+    printf("Cidade: %s\n", carta2.cidade);
+    printf("Área: %.2f km²\n", carta2.area);
+    printf("População: %d habitantes\n", carta2.populacao);
+    printf("Pontos Turísticos: %d\n", carta2.pontosTuristicos);
+    printf("PIB: %.2f milhões\n", carta2.PIB);
+    printf("Densidade Populacional: %.2f\n", densPolu(carta2.populacao, carta2.area));
+    printf("PIB Per Capita: %.2f\n", pibPerCapita(carta2.PIB, carta2.populacao));
+
+
+return 0;
+
 }
