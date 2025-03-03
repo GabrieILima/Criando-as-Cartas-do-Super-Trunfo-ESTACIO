@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define ERRO 0.0001  // Definir um valor de tolerância
+#include <ctype.h>
 
 /// @brief Definição da estrutura que armazenará os dados das Cartas do jogo
 
@@ -126,6 +126,7 @@ int main(){
     printf("PIB Per Capita: %.2f\n", pibPerCapita(carta2.PIB, carta2.populacao));
     printf("Super Poder: %.2f\n", superPower(carta2.area, carta2.populacao,carta2.pontosTuristicos,carta2.PIB, densPolu(carta2.populacao, carta2.area),pibPerCapita(carta2.PIB, carta2.populacao )));
 
+    /*
     // Comparação das cartas com IF (Área)
     if (carta1.area > carta2.area)
     {
@@ -238,7 +239,17 @@ int main(){
     } else{
         printf("\nHouve um empate entre as Cartas\n");
     }
-    
+    */
+
+    char atributo[50];
+
+    printf("\nDigite o atributo que deseja comparar:\n1 - Área\n2 - População\n3 - Pontos Turísticos\n4 - PIB\n5 - Densidade Demográfica\n6 - PIB Per Capita\n7 - Super Poder\n");
+    gets(atributo,50,stdin);
+
+    atributo[50] = tolower(atributo[50]);
+
+    if (carta1.atributo[50] > carta2.atributo[50])
+
 return 0;
 
 }
