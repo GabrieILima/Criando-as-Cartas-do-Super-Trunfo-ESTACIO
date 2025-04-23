@@ -6,7 +6,7 @@
 
 typedef struct
 {
-    char estado,cidade[50], codigoCarta[20];
+    char estado[20],cidade[50], codigoCarta[20];
     int populacao, pontosTuristicos;
     float area, PIB;
 } Carta;
@@ -31,14 +31,15 @@ float pibPerCapita(float produto,int pessoa){
 
 int main(){
     int c1, c2;
+    char atributo[50];
     Carta carta1; // Define uma variável do tipo de estrutura Carta, criada acima
 
 
     //Abaixo segue as solicitações para entrada dos dados das cartas
     printf("Digite a qual estado a cidade pertence: \n");
-    scanf("%c", &carta1.estado);
+    fgets(carta1.estado, 20, stdin);
 
-    getchar();//remove o \n deixado pelo scanf pois pode causar erros de conflito com o fgets
+    carta1.estado[strcspn(carta1.estado, "\n")] = '\0'; // Remove o '\n' de fgets
 
     printf("Digite o codigo da Cidade: \n");
     fgets(carta1.codigoCarta, 20, stdin);
@@ -62,6 +63,7 @@ int main(){
     printf("Informe o PIB da cidade: \n");
     scanf("%f", &carta1.PIB);
 
+    getchar();
 
     printf("\nAgora entraremos com os dados da segunda carta\n");
     printf("\n");
@@ -71,9 +73,9 @@ int main(){
 
     //Abaixo segue as solicitações para entrada dos dados das cartas
     printf("Digite a qual estado a cidade pertence: \n");
-    scanf(" %c", &carta2.estado);
+    fgets(carta2.estado, 20, stdin);
 
-    getchar();//remove o \n deixado pelo scanf pois pode causar erros de conflito com o fgets
+    carta2.estado[strcspn(carta2.estado, "\n")] = '\0'; // Remove o '\n' de fgets
 
     printf("Digite o codigo da Cidade: \n");
     fgets(carta2.codigoCarta, 20, stdin);
@@ -97,7 +99,7 @@ int main(){
     printf("Informe o PIB da cidade: \n");
     scanf("%f", &carta2.PIB);
 
-   
+    getchar();
     
     
     // Exibindo os dados cadastrados
@@ -241,7 +243,7 @@ int main(){
     }
     
 
-    char atributo[50];
+
 
     printf("\nDigite o atributo que deseja comparar:\n1 - Área\n2 - População\n3 - Pontos Turísticos\n4 - PIB\n5 - Densidade Demográfica\n6 - PIB Per Capita\n7 - Super Poder\n");
     fgets(atributo,20,stdin);
@@ -251,7 +253,8 @@ int main(){
     atributo[50] = tolower(atributo[50]);
 
     // Verificar qual atributo foi escolhido e inofrmar o vencendor
-    if (strcmp(atributo, "área") == 0) {
+    if (strcmp(atributo, "Área") == 0 || atributo, "1" == 0) {
+        printf("Você escolheu comparar o à Área!\n");
         if (carta1.area > carta2.area)
         {
             printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
@@ -265,20 +268,22 @@ int main(){
         } else printf("Não há vencedores");
         
         
-    } else if (strcmp(atributo, "população") == 0) {
+    } else if (strcmp(atributo, "População") == 0 || strcmp(atributo, "2") == 0) {
+        printf("Você escolheu comparar o População!\n");
         if (carta1.populacao > carta2.populacao)
         {
-            printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
+            printf("\nCarta 1 - %s: %d\nCarta 2 - %s: %d\nResultado: Carta 1 Venceu\n",
                 carta1.cidade, carta1.populacao, 
                 carta2.cidade, carta2.populacao);
         } else if (carta1.populacao < carta2.populacao)
         {
-            printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 2 Venceu\n",
+            printf("\nCarta 1 - %s: %d\nCarta 2 - %s: %d\nResultado: Carta 2 Venceu\n",
                 carta1.cidade, carta1.populacao, 
                 carta2.cidade, carta2.populacao);
         } else printf("Não há vencedores");
 
-    } else if (strcmp(atributo, "pontos turísticos") == 0) {
+    } else if (strcmp(atributo, "Pontos Turísticos") == 0 ||strcmp(atributo, "3") == 0) {
+        printf("Você escolheu comparar o Pontos Turísticos!\n");
         if (carta1.pontosTuristicos > carta2.pontosTuristicos)
         {
             printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
@@ -291,7 +296,8 @@ int main(){
                 carta2.cidade, carta2.pontosTuristicos);
         } else printf("Não há vencedores");
     
-    } else if (strcmp(atributo, "pib") == 0) {
+    } else if (strcmp(atributo, "PIB") == 0 || strcmp(atributo, "4") == 0) {
+        printf("Você escolheu comparar o PIB!\n");
         if (carta1.PIB > carta2.PIB)
         {
             printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
@@ -304,7 +310,8 @@ int main(){
                 carta2.cidade, carta2.PIB);
         } else printf("Não há vencedores");
 
-    } else if (strcmp(atributo, "densidade demográfica") == 0) {
+    } else if (strcmp(atributo, "Densidade Demográfica") == 0 || strcmp(atributo, "5") == 0) {
+        printf("Você escolheu comparar o Densidade Demográfica!\n");
         if ((densPolu(carta1.populacao, carta1.area)) > (densPolu(carta2.populacao, carta2.area)))
         {
             printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
@@ -317,8 +324,8 @@ int main(){
                 carta2.cidade, (densPolu(carta2.populacao, carta2.area)));
         } else printf("Não há vencedores");
 
-    } else if (strcmp(atributo, "pib per capita") == 0) {
-         
+    } else if (strcmp(atributo, "Pib Per Capita") == 0 || (atributo, "5") == 0) {
+        printf("Você escolheu comparar o PIB Per Capita!\n");
         if ((pibPerCapita(carta1.populacao, carta1.area)) > (pibPerCapita(carta2.populacao, carta2.area)))
         {
             printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
@@ -331,8 +338,19 @@ int main(){
                 carta2.cidade, (pibPerCapita(carta2.populacao, carta2.area)));
         } else printf("Não há vencedores");
         
-    } else if (strcmp(atributo, "super poder") == 0) {
+    } else if (strcmp(atributo, "Super Poder") == 0 || strcmp(atributo, "7") == 0) {
         printf("Você escolheu comparar o Super Poder!\n");
+        if (superPower(carta2.area, carta2.populacao,carta2.pontosTuristicos,carta2.PIB, densPolu(carta2.populacao, carta2.area),pibPerCapita(carta2.PIB, carta2.populacao )) > superPower(carta2.area, carta2.populacao,carta2.pontosTuristicos,carta2.PIB, densPolu(carta2.populacao, carta2.area),pibPerCapita(carta2.PIB, carta2.populacao )))
+        {
+            printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
+                carta1.cidade, (superPower(carta1.area, carta1.populacao,carta1.pontosTuristicos,carta1.PIB, densPolu(carta1.populacao, carta1.area),pibPerCapita(carta1.PIB, carta1.populacao )))), 
+                carta2.cidade, (superPower(carta2.area, carta2.populacao,carta2.pontosTuristicos,carta2.PIB, densPolu(carta2.populacao, carta2.area),pibPerCapita(carta2.PIB, carta2.populacao )));
+        } else if (superPower(carta2.area, carta2.populacao,carta2.pontosTuristicos,carta2.PIB, densPolu(carta2.populacao, carta2.area),pibPerCapita(carta2.PIB, carta2.populacao )) > superPower(carta1.area, carta1.populacao,carta1.pontosTuristicos,carta1.PIB, densPolu(carta1.populacao, carta1.area),pibPerCapita(carta1.PIB, carta1.populacao )))
+        {
+            printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 2 Venceu\n",
+                carta1.cidade, (superPower(carta1.area, carta1.populacao,carta1.pontosTuristicos,carta1.PIB, densPolu(carta1.populacao, carta1.area),pibPerCapita(carta1.PIB, carta1.populacao ))),
+                carta2.cidade, (superPower(carta2.area, carta2.populacao,carta2.pontosTuristicos,carta2.PIB, densPolu(carta2.populacao, carta2.area),pibPerCapita(carta2.PIB, carta2.populacao ))));
+        } else printf("Não há vencedores");
     } else {
         printf("Atributo inválido!\n");
 
