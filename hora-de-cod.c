@@ -311,7 +311,7 @@ int main(){
 
     case 5:
         printf("Você escolheu comparar o Densidade Demográfica!\n");
-        if ((densPolu(carta1.populacao, carta1.area)) > (densPolu(carta2.populacao, carta2.area)))
+        if ((densPolu(carta1.populacao, carta1.area)) < (densPolu(carta2.populacao, carta2.area)))
         {
             printf("\nCarta 1 - %s: %.2f\nCarta 2 - %s: %.2f\nResultado: Carta 1 Venceu\n",
                 carta1.cidade, (densPolu(carta1.populacao, carta1.area)), 
